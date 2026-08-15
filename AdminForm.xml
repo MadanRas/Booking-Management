@@ -1,0 +1,19 @@
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Admin">
+
+  <!-- Mapping Java class -->
+  <typeAlias alias="admin" type="com.journal.AdminPOJO.AdminPOJO"/>
+
+  <!-- Select all records -->
+  <select id="checkadminexists" resultClass="admin" parameterClass="Integer">
+    SELECT * from admintable where id=#value#
+  </select>
+  
+  <insert id="insertAdmin" parameterClass ="com.journal.AdminPOJO.AdminPOJO">
+  INSERT  INTO admintable (id, password) values (#id#,#password#)
+  </insert>
+  
+
+
+</sqlMap>
