@@ -1,0 +1,23 @@
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Audience">
+
+	<typeAlias alias="audience"
+		type="com.journal.AudiencePOJO.AudiencePOJO" />
+
+
+	<select id="getallmovies" resultClass="String"
+		parameterClass="String">
+		SELECT moviename from moviedetails where certificatetype=#value#
+	</select>
+
+
+	<insert id="insertaudience"
+		parameterClass="com.journal.AudiencePOJO.AudiencePOJO">
+		Insert into audiencetable
+		(Id,name,dateofmovie,certificate,movie,snacks,feedback,comments)
+		values(#aid#,#aname#,#date#,#certificates#,#movies#,#beveragesnacks#,#feedback#,#improvement#)
+	</insert>
+
+
+</sqlMap>
