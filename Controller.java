@@ -1,5 +1,6 @@
 package com.journal;
 
+import java.applet.AudioClip;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -104,6 +105,20 @@ public class Controller {
 		}else {
 			map.put("insertion", "failed");
 		}
+		return ResponseEntity.ok(map);
+	}
+	
+	@GetMapping("/audiencetable")
+	public String callaudiencetable() {
+		return "audiencetable";
+	}
+	
+	@ResponseBody
+	@GetMapping("/getallusers")
+	public ResponseEntity<Map<String,Object>> getallusers() throws SQLException, IOException{
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<AudiencePOJO> l1 = audienceDAO.selectAllAudience();
+		map.put("list", l1);
 		return ResponseEntity.ok(map);
 	}
 }
