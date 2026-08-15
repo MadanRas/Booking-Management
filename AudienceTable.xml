@@ -18,6 +18,10 @@
 		(Id,name,dateofmovie,certificate,movie,snacks,feedback,comments)
 		values(#aid#,#aname#,#date#,#certificates#,#movies#,#beveragesnacks#,#feedback#,#improvement#)
 	</insert>
+	
+	<select id="selectallaudience" resultClass="audience">
+		SELECT Id,name,dateofmovie,certificate,movie,snacks,feedback,comments from audiencetable 
+	</select>
 
 
 </sqlMap>
