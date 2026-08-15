@@ -28,4 +28,11 @@ public class AudienceDAO {
 		smc.insert("Audience.insertaudience", audience);
 		return 1;
 	}
+
+	public List<AudiencePOJO> selectAllAudience() throws SQLException, IOException {
+		Reader rd = Resources.getResourceAsReader("sqlMapClient.xml");
+		smc = SqlMapClientBuilder.buildSqlMapClient(rd);
+		System.out.println(smc.queryForList("Audience.selectallaudience"));
+		return smc.queryForList("Audience.selectallaudience");
+	}
 }
