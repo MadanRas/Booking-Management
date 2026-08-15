@@ -1,0 +1,15 @@
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Movie">
+
+  <typeAlias alias="audience" type="com.journal.AudiencePOJO.AudiencePOJO"/>
+	
+
+  <select id="getallmovies" resultClass="String" parameterClass="String">
+    SELECT moviename from moviedetails where certificatetype=#value#
+  </select>	
+  
+ 
+
+
+</sqlMap>
