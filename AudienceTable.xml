@@ -5,10 +5,23 @@
 	<typeAlias alias="audience"
 		type="com.journal.AudiencePOJO.AudiencePOJO" />
 
+	<resultMap id="resultmapping"
+		class="com.journal.AudiencePOJO.AudiencePOJO">
+		<result property="aid" column="Id" />
+		<result property="aname" column="name" />
+		<result property="date" column="dateofmovie" />
+		<result property="certificates" column="certificate" />
+		<result property="movies" column="movie" />
+		<result property="beveragesnacks" column="snacks" />
+		<result property="feedback" column="feedback" />
+		<result property="improvement" column="comments" />
+	</resultMap>
+
 
 	<select id="getallmovies" resultClass="String"
 		parameterClass="String">
-		SELECT moviename from moviedetails where certificatetype=#value#
+		SELECT
+		moviename from moviedetails where certificatetype=#value#
 	</select>
 
 
@@ -18,9 +31,19 @@
 		(Id,name,dateofmovie,certificate,movie,snacks,feedback,comments)
 		values(#aid#,#aname#,#date#,#certificates#,#movies#,#beveragesnacks#,#feedback#,#improvement#)
 	</insert>
-	
-	<select id="selectallaudience" resultClass="audience">
-		SELECT Id,name,dateofmovie,certificate,movie,snacks,feedback,comments from audiencetable 
+
+	<select id="selectallaudience" resultMap="resultmapping">
+		SELECT Id, name, dateofmovie, certificate,
+		movie, snacks, feedback, comments
+		FROM audiencetable
+	</select>
+
+	<select id="selectspecificid" resultMap="resultmapping"
+		parameterClass="Integer">
+		SELECT Id, name, dateofmovie, certificate,
+		movie, snacks, feedback, comments
+		FROM audiencetable
+		where id = #value#
 	</select>
 
 
