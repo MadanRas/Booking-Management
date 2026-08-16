@@ -14,11 +14,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.journal.AdminDAO.AdminDAO;
 import com.journal.AdminPOJO.AdminPOJO;
 import com.journal.AudienceDAO.AudienceDAO;
 import com.journal.AudiencePOJO.AudiencePOJO;
+
+import jdk.internal.classfile.impl.BufferedCodeBuilder.Model;
 
 @org.springframework.stereotype.Controller
 public class Controller {
@@ -73,7 +76,7 @@ public class Controller {
 		if (list != null) {
 			map.put("listofmovies", list);
 		}
-
+		
 		return ResponseEntity.ok(map);
 	}
 
@@ -120,5 +123,18 @@ public class Controller {
 		List<AudiencePOJO> l1 = audienceDAO.selectAllAudience();
 		map.put("list", l1);
 		return ResponseEntity.ok(map);
+	}
+	
+	@ResponseBody
+	@GetMapping("/selectspecificuser/{id}")
+	public ModelAndView selectspecificuser(@PathVariable("id") int id) throws IOException, SQLException {
+		ModelAndView m1 = new ModelAndView();
+		System.out.println(id);
+
+		AudiencePOJO a1 = audienceDAO.selectspecificuser(id);
+		System.out.println(a1);
+	    m1.addObject("audience", a1);
+	    m1.setViewName("editform");
+		return m1;	
 	}
 }
