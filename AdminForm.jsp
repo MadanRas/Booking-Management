@@ -192,7 +192,7 @@
 				dataType:"json",
 				success(data){
 					 if(data.success == true){
-						window.location.href = "${pageContext.request.contextPath}/audienceform";
+						window.location.href = "${pageContext.request.contextPath}/audiencetable";
 					}else{
 						$('#iderror').text("user doesnt exist");
 						return;
