@@ -28,6 +28,33 @@
 		</tbody>
 	</table>
 	<script>
+	$(document).ready(function(){
+		$.ajax({
+			type:"GET",
+			url:"getallusers",
+			dataType:"json",
+			success(data){
+				$('#tablebody').empty();
+				$.each(data.list,function(i,ele){
+					console.log(data.list)
+					$('#tablebody').append(
+							"<tr>"+
+						"<td>" + ele.aid +"</td>"+
+						"<td>" + ele.aname +"</td>"+
+						"<td>" + ele.date +"</td>"+
+						"<td>" + ele.certificates +"</td>"+
+						"<td>" + ele.movies +"</td>"+
+						"<td>" + ele.beveragesnacks +"</td>"+
+						"<td>" + ele.feedback +"</td>"+
+						"<td>" + ele.improvement +"</td>"+
+						"<td>" + "<button type='button' class='edit-btn' data-id='"+ele.aid +"'>Edit</button>"+
+						"<td>" + "<button type='button' class='dlt-btn' data-id='"+ele.aid +"'>Delete</button>"+
+						"</tr>"
+					)
+				})
+			}
+		})
+	})
 		$('#rbtn').on('click',function(){
 			$.ajax({
 				type:"GET",
@@ -47,13 +74,19 @@
 							"<td>" + ele.beveragesnacks +"</td>"+
 							"<td>" + ele.feedback +"</td>"+
 							"<td>" + ele.improvement +"</td>"+
-							"<td>" + "<button class='edit-btn' data-id='"+ele.aid +"'>Edit</button>"+
-							"<td>" + "<button class='dlt-btn' data-id='"+ele.aid +"'>Delete</button>"+
+							"<td>" + "<button type='button' class='edit-btn' data-id='"+ele.aid +"'>Edit</button>"+
+							"<td>" + "<button type='button' class='dlt-btn' data-id='"+ele.aid +"'>Delete</button>"+
 							"</tr>"
 						)
 					})
 				}
 			})
+		})
+		
+		$(document).on('click','.edit-btn',function(){
+			let id = $(this).data('id')
+			window.location.href = '${pageContext.request.contextPath}/selectspecificuser/'+id;
+
 		})
 	</script>
 </body>
